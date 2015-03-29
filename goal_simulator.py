@@ -35,15 +35,15 @@ def run_game():
     while True:
     
         print_state(day_state)
+
+        if day_state.get_stats()[0] >= 10:
+            return
+        
         action = get_input(ACTION_DICT)
         
         if action != None:
             day_state.run_sim(action)
             
-        if day_state.get_stats()[0] > 10:
-            return
-        
-    
 def get_input(action_dict):
     """
     If the player types in a valid action, return action.
@@ -73,7 +73,7 @@ def print_state(game_state):
 
 class game_state(object):
     
-    def __init__(time, hunger, stress, sleep, motivation):
+    def __init__(self, time, hunger, stress, sleep, motivation):
     
         self.time = time
         self.hunger = hunger
@@ -92,7 +92,7 @@ class game_state(object):
         
         self.time += 0.5
         
-    def get_stats(self)
+    def get_stats(self):
     
         return (self.time, self.hunger, self.stress, self.sleep,
                 self.motivation)
